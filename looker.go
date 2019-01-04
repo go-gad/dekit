@@ -4,6 +4,23 @@ import (
 	"reflect"
 )
 
+type StructElement struct {
+	UserType string
+	Fields   Fields
+}
+
+func LookAtParameter(at reflect.Type) StructElement {
+	if at.Kind() == reflect.Ptr {
+		at = at.Elem()
+	}
+	var prm = StructElement{
+		UserType: at.Name(),
+		Fields:   LookAtFields(at),
+	}
+
+	return prm
+}
+
 const (
 	TagQuery  = "query"
 	TagHeader = "header"

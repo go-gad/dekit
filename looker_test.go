@@ -23,6 +23,8 @@ func TestLookAtFields(t *testing.T) {
 			{
 				Name:     "Body",
 				BaseType: "string",
+				TagName:  TagJson,
+				TagValue: "body",
 			},
 		}
 		assert.Equal(t, expFields, actFields)

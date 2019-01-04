@@ -7,7 +7,16 @@ import (
 const (
 	TagQuery  = "query"
 	TagHeader = "header"
+	TagJson   = "json"
+	TagPath   = "path"
 )
+
+var tags = [...]string{
+	TagQuery,
+	TagHeader,
+	TagPath,
+	TagJson,
+}
 
 type Field struct {
 	Name     string
@@ -32,10 +41,13 @@ func LookAtField(ft reflect.StructField) Fields {
 		Name:     ft.Name,
 		BaseType: ft.Type.Kind().String(),
 	}
-	tagValue, ok := ft.Tag.Lookup(TagQuery)
-	if ok {
-		f.TagName = TagQuery
-		f.TagValue = tagValue
+	for _, tagName := range tags {
+		tagValue, ok := ft.Tag.Lookup(tagName)
+		if ok {
+			f.TagName = tagName
+			f.TagValue = tagValue
+			break
+		}
 	}
 	return []Field{f}
 }

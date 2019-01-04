@@ -17,6 +17,8 @@ func TestLookAtFields(t *testing.T) {
 			{
 				Name:     "Name",
 				BaseType: "string",
+				TagName:  TagQuery,
+				TagValue: "name",
 			},
 			{
 				Name:     "Body",

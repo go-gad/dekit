@@ -1,10 +1,19 @@
 package main
 
-import "reflect"
+import (
+	"reflect"
+)
+
+const (
+	TagQuery  = "query"
+	TagHeader = "header"
+)
 
 type Field struct {
 	Name     string
 	BaseType string
+	TagName  string
+	TagValue string
 }
 
 type Fields []Field
@@ -22,6 +31,11 @@ func LookAtField(ft reflect.StructField) Fields {
 	f := Field{
 		Name:     ft.Name,
 		BaseType: ft.Type.Kind().String(),
+	}
+	tagValue, ok := ft.Tag.Lookup(TagQuery)
+	if ok {
+		f.TagName = TagQuery
+		f.TagValue = tagValue
 	}
 	return []Field{f}
 }

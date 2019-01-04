@@ -1,10 +1,10 @@
-package main
+package looker
 
 import (
 	"reflect"
 	"testing"
 
-	"github.com/go-gad/dekit/testdata"
+	"github.com/go-gad/dekit/looker/testdata"
 	"github.com/kr/pretty"
 	"github.com/stretchr/testify/assert"
 )

@@ -9,6 +9,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestLookAtParameters(t *testing.T) {
+	prms := []reflect.Type{
+		reflect.TypeOf(testdata.Req1{}),
+		reflect.TypeOf(testdata.Req2{}),
+	}
+	pkg := LookAtParameters(prms)
+	assert.Equal(t, 2, len(pkg.Parameters))
+}
+
 func TestLookAtParameter(t *testing.T) {
 	var typ reflect.Type = reflect.TypeOf(testdata.CreateOrderReq{})
 	prm := LookAtParameter(typ)

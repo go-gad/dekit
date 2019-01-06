@@ -4,6 +4,22 @@ import (
 	"reflect"
 )
 
+type Package struct {
+	Parameters []StructElement
+}
+
+func LookAtParameters(prms []reflect.Type) Package {
+	pkg := Package{
+		Parameters: make([]StructElement, 0, len(prms)),
+	}
+	for _, typ := range prms {
+		prm := LookAtParameter(typ)
+		pkg.Parameters = append(pkg.Parameters, prm)
+	}
+
+	return pkg
+}
+
 type StructElement struct {
 	UserType string
 	Fields   Fields

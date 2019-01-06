@@ -1,15 +1,22 @@
 package looker
 
 import (
+	"path"
 	"reflect"
 )
 
 type Package struct {
+	Path       string
 	Parameters []StructElement
+}
+
+func (pkg *Package) Name() string {
+	return path.Base(pkg.Path)
 }
 
 func LookAtParameters(pkgPath string, prms []reflect.Type) *Package {
 	pkg := &Package{
+		Path:       pkgPath,
 		Parameters: make([]StructElement, 0, len(prms)),
 	}
 	for _, typ := range prms {

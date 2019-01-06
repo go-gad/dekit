@@ -18,7 +18,7 @@ Example:
         dekit -destination=./decoders_dekit.go github.com/go-gad/dekit/examples/pizza CreateOrderReq
 
   <import_path>
-        describes the complete package path where the interface is located.
+        describes the complete package path where the parameter is located.
   <parameter_names>
         indicates the parameter names that are separated by comma.
 

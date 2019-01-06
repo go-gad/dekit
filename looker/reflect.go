@@ -131,7 +131,7 @@ func writeProgram(importPath string, symbols []string) ([]byte, error) {
 	if err := reflectProgram.Execute(&program, &data); err != nil {
 		return nil, err
 	}
-	fmt.Printf("PROGRAM\n%s\n----\n", program.Bytes())
+	//fmt.Printf("PROGRAM\n%s\n----\n", program.Bytes())
 
 	return program.Bytes(), nil
 }
@@ -141,7 +141,7 @@ type reflectData struct {
 	Symbols    []string
 }
 
-func EncodeGob(output string, pkg Package) error {
+func EncodeGob(output string, pkg *Package) error {
 	outfile := os.Stdout
 
 	if len(output) != 0 {
@@ -187,8 +187,6 @@ var output = flag.String("output", "", "The output file name, or empty to use st
 func main() {
 	flag.Parse()
 
-// {{printf "%q" "some string"}}
-	
 	pkgPath := "{{printf "%s" .ImportPath}}"
 	var list = []reflect.Type{
 		{{range .Symbols}}

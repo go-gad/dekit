@@ -14,7 +14,7 @@ func TestLookAtParameters(t *testing.T) {
 		reflect.TypeOf(testdata.Req1{}),
 		reflect.TypeOf(testdata.Req2{}),
 	}
-	pkg := LookAtParameters(prms)
+	pkg := LookAtParameters("", prms)
 	assert.Equal(t, 2, len(pkg.Parameters))
 }
 

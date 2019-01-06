@@ -8,7 +8,7 @@ type Package struct {
 	Parameters []StructElement
 }
 
-func LookAtParameters(prms []reflect.Type) Package {
+func LookAtParameters(pkgPath string, prms []reflect.Type) Package {
 	pkg := Package{
 		Parameters: make([]StructElement, 0, len(prms)),
 	}

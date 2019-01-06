@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"io"
 	"log"
 	"os"
 	"strings"
@@ -12,11 +13,11 @@ import (
 
 var (
 	destination = flag.String("destination", "", "Output file; defaults to stdout.")
-	packageName = flag.String("package", "", "The full import path of the library for the generated implementation")
+	//packageName = flag.String("package", "", "The full import path of the library for the generated implementation")
 )
 
 func main() {
-	//flag.Usage = usage
+	flag.Usage = usage
 	flag.Parse()
 
 	if flag.NArg() != 2 {
@@ -69,3 +70,22 @@ func GenerateCode(srcpkg string, symbols []string) ([]byte, error) {
 
 	return g.Output(), nil
 }
+
+func usage() {
+	io.WriteString(os.Stderr, usageText)
+	flag.PrintDefaults()
+}
+
+const usageText = `Usage:
+    dekit [options...] <import_path> <parameter_names>
+
+Example:
+	dekit -destination=./decoders_dekit.go github.com/go-gad/dekit/examples/pizza CreateOrderReq
+
+  <import_path> 
+        describes the complete package path where the interface is located.
+  <parameter_names> 
+        indicates the parameter names that are separated by comma.
+
+Options:
+`

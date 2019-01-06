@@ -1,7 +1,35 @@
 # dekit
 Toolchain to generate decoder based on request's struct
 
-### Usage
+## Install
+
+```
+go get -u github.com/go-gad/dekit
+```
+
+## Usage
+
+```sh
+❯ dekit -h
+Usage:
+    dekit [options...] <import_path> <parameter_names>
+
+Example:
+        dekit -destination=./decoders_dekit.go github.com/go-gad/dekit/examples/pizza CreateOrderReq
+
+  <import_path>
+        describes the complete package path where the interface is located.
+  <parameter_names>
+        indicates the parameter names that are separated by comma.
+
+Options:
+  -build_flags string
+        Additional flags for go build.
+  -destination string
+        Output file; defaults to stdout.
+```
+
+## Purpose
 
 ```go
 type UpdateAuthorReq struct {
